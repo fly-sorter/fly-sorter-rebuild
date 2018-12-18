@@ -3,7 +3,8 @@
 const initialState = {
   parts: [],
   subAssembly: [],
-  users: []
+  users: [],
+  signup: {}
 };
 
 export default (state = initialState, action) => {
@@ -18,6 +19,11 @@ export default (state = initialState, action) => {
 
     case 'GETUSERLIST':
       return { ...state, ...{ users: payload } };
+
+    case 'SIGNUP': {
+      console.log(payload);
+      return { ...state, ...{ signup: payload } };
+    }
 
     default:
       return state;
