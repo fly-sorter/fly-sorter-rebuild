@@ -1,9 +1,12 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import cookies from 'react-cookies';
 
 class AuthRedirect extends React.Component {
   render() {
-    const { token } = this.props;
+    // cookies.save('auth', 'I am a cookie');
+    const token = cookies.load('auth');
+    console.log(token);
 
     return (
       <div>
