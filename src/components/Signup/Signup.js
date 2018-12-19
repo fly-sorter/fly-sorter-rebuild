@@ -2,8 +2,10 @@ import React from 'react';
 import logo from '../../assets/logo.png';
 import failedLogin from '../../assets/failedLogin.png';
 import successLogin from '../../assets/successLogin.png';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import cookies from 'react-cookies';
 
 import './signup.scss';
 import * as actions from './signupAction.js';
@@ -22,7 +24,8 @@ class Signup extends React.Component {
       usernameError: '',
       passwordError: '',
       answerError: '',
-      checkImg: ''
+      checkImg: '',
+      redirectToReferrer: false
     };
   }
 
@@ -98,10 +101,16 @@ class Signup extends React.Component {
     ) {
       console.log(this.state);
       this.props.submitSignup(this.state);
+      cookies.save('auth', 'granted');
+      let authToken = cookies.load('auth');
+      if (authToken) {
+        this.setState({ redirectToReferrer: true });
+      }
     }
   };
 
   render() {
+    if (this.state.redirectToReferrer) return <Redirect to="/authRedirect" />;
     return (
       <div>
         <div className="centered">
@@ -193,7 +202,7 @@ const mapDispatchToProps = (dispatch, getState) => ({
 });
 
 const mapStateToProps = state => ({
-  signup: state.signup
+  main: state.main
 });
 
 export default connect(

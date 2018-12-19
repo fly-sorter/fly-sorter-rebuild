@@ -2,14 +2,17 @@ import React from 'react';
 import './signin.scss';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import superagent from 'superagent';
+import cookies from 'react-cookies';
 
 class Signin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      redirectToReferrer: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -25,7 +28,11 @@ class Signin extends React.Component {
     const { username, password } = this.state;
     console.log('USERNAME: ', username);
     console.log('PASSWORD: ', password);
-
+    cookies.save('auth', 'granted');
+    let authToken = cookies.load('auth');
+    if (authToken) {
+      this.setState({ redirectToReferrer: true });
+    }
     // await superagent
     //   .post(`/signin`)
     //   .auth(username, password)
@@ -37,6 +44,7 @@ class Signin extends React.Component {
   }
 
   render() {
+    if (this.state.redirectToReferrer) return <Redirect to="/authRedirect" />;
     return (
       <div>
         <div className="centered">
