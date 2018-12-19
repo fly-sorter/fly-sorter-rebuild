@@ -4,8 +4,6 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import './signup.scss';
-
 class CreatePart extends React.Component {
   constructor(props) {
     super(props);
@@ -28,55 +26,7 @@ class CreatePart extends React.Component {
     });
   };
 
-  // handleSubmit = event => {
-  //   event.preventDefault();
-  //   if (this.state.username.length < minUserName) {
-  //     this.setState({
-  //       usernameError: 'Please enter an username with 5 or more characters.'
-  //     });
-  //   }
-  //   if (this.state.password.length < minPassword) {
-  //     this.setState({
-  //       passwordError: 'Please enter an password with 7 or more characters.'
-  //     });
-  //   }
-
-  //   if (this.state.recoveryAnswer.length === 0) {
-  //     this.setState({
-  //       answerError: 'Please enter an answer to the recovery question.'
-  //     });
-  //   }
-
-  //   if (this.state.username.length > minUserName) {
-  //     this.setState({
-  //       usernameError: ''
-  //     });
-  //   }
-  //   if (this.state.recoveryAnswer.length > 0) {
-  //     this.setState({
-  //       answerError: ''
-  //     });
-  //   }
-  //   if (this.state.password.length > minPassword) {
-  //     this.setState({
-  //       passwordError: ''
-  //     });
-  //   }
-
-  //   if (this.state.username.length > minUserName) {
-  //     this.setState({
-  //       usernameError: ''
-  //     });
-  //   }
-  //   if (this.state.password.length > minPassword) {
-  //     this.setState({
-  //       passwordError: ''
-  //     });
-  //   }
-  // };
-
   render() {
-    if (this.state.redirectToReferrer) return <Redirect to="/authRedirect" />;
     return (
       <div>
         <div className="centered">

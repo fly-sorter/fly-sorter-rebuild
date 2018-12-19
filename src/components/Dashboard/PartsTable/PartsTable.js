@@ -1,56 +1,32 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import * as actions from './partsTable-action.js';
+import { connect } from 'react-redux';
 
 class PartsTable extends React.Component {
   render() {
-    const data = [
-      {
-        id: 123,
-        description: 'Screws',
-        subpart: 'True',
-        source: 'Swaglord Inc.',
-        manufacturingNumber: 123,
-        price: 12.15,
-        category: 123,
-        location: 1111,
-        partCount: 1,
-        longLead: 'True',
-        notes: "It's a freaking screw"
-      },
-      {
-        id: 123,
-        description: 'Screws',
-        subpart: 'True',
-        source: 'Swaglord Inc.',
-        manufacturingNumber: 123,
-        price: 12.15,
-        category: 123,
-        location: 1111,
-        partCount: 1,
-        longLead: 'True',
-        notes: "It's a freaking screw"
-      }
-    ];
+    const data = this.props.main.parts;
+    console.log(data, 'i am the rendered table data');
 
     const columns = [
       {
         Header: 'Parts',
         columns: [
-          { Header: 'ID', accessor: 'id' },
-          { Header: 'Description', accessor: 'description' },
-          { Header: 'Subpart?', accessor: 'subpart' },
-          { Header: 'Source', accessor: 'source' },
+          { Header: 'ID', accessor: 'part_id' },
+          { Header: 'Description', accessor: 'part_desc' },
+          { Header: 'Subpart?', accessor: 'part_sub' },
+          { Header: 'Source', accessor: 'part_src' },
           {
             Header: 'Manufacture Part Number',
-            accessor: 'manufacturingNumber'
+            accessor: 'part_mfgnum'
           },
-          { Header: 'Price', accessor: 'price' },
-          { Header: 'Category ID', accessor: 'category' },
-          { Header: 'Location ID', accessor: 'location' },
-          { Header: 'Part Count', accessor: 'partCount' },
-          { Header: 'Long lead?', accessor: 'longLead' },
-          { Header: 'Notes', accessor: 'notes' }
+          { Header: 'Price', accessor: 'part_price' },
+          { Header: 'Category ID', accessor: 'part_category' },
+          { Header: 'Location ID', accessor: 'part_location' },
+          { Header: 'Part Count', accessor: 'part_count' },
+          { Header: 'Long lead?', accessor: 'part_longlead' },
+          { Header: 'Notes', accessor: 'part_notes' }
         ]
       }
     ];
@@ -68,4 +44,15 @@ class PartsTable extends React.Component {
   }
 }
 
-export default PartsTable;
+const mapDispatchToProps = (dispatch, getState) => ({
+  getParts: () => dispatch(actions.getParts())
+});
+
+const mapStateToProps = state => ({
+  main: state.main
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PartsTable);
