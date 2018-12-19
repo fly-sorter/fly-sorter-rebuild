@@ -14,6 +14,7 @@ class Dashboard extends React.Component {
     };
   }
 
+  //use this to render table
   componentDidMount = () => {
     this.loadTable();
   };
