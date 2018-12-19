@@ -1,0 +1,53 @@
+.toolbar {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  nav {
+    grid-column: 2;
+    grid-row: 1;
+    padding-right: 100px;
+    margin-top: 50px;
+  }
+  img {
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 29px;
+    margin-left: 50px;
+  }
+}
+.centered {
+  .loading {
+    font-size: 50px;
+    padding-top: 150px;
+    padding-left: 150px;
+  }
+
+  .loading:after {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    -webkit-animation: ellipsis steps(4, end) 900ms infinite;
+    animation: ellipsis steps(4, end) 1200ms infinite;
+    content: '\2026'; /* ascii code for the ellipsis character */
+    width: 0px;
+  }
+
+  @keyframes ellipsis {
+    to {
+      width: 1.25em;
+    }
+  }
+
+  @-webkit-keyframes ellipsis {
+    to {
+      width: 1.25em;
+    }
+  }
+
+  .ReactTable {
+    font-family: arial;
+    font-size: 15px;
+    margin-left: -350px;
+    color: #4c4c4c;
+    text-align: center;
+  }
+}
