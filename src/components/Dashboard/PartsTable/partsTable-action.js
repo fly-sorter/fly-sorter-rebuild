@@ -1,6 +1,6 @@
 import superagent from 'superagent';
 
-const getTable = payload => {
+const postTable = payload => {
   console.log(' I am hit in theory');
   return {
     type: 'GETPARTS',
@@ -15,6 +15,6 @@ export const getParts = (url, payload) => dispatch => {
     )
     .then(data => {
       console.log(JSON.parse(data.text));
-      dispatch(getTable(JSON.parse(data.text)));
+      dispatch(postTable(JSON.parse(data.text)));
     });
 };

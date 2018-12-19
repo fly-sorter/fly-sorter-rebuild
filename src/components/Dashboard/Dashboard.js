@@ -14,11 +14,13 @@ class Dashboard extends React.Component {
     };
   }
 
+  //use this to render table
+  componentDidMount = () => {
+    this.loadTable();
+  };
+
   loadTable = () => {
-    this.props.getTable({ bob: 'I am bob' });
-    if (this.props.main.parts) {
-      this.setState({ finishedLoading: true });
-    }
+    this.props.getParts();
   };
 
   render() {
@@ -29,14 +31,7 @@ class Dashboard extends React.Component {
           <NavUI />
         </div>
         <div className="centered">
-          {!this.state.finishedLoading ? (
-            <div>
-              <p className="loading">Loading Table</p>
-              <button onClick={this.loadTable}>Test Load</button>
-            </div>
-          ) : (
-            <PartsTable />
-          )}
+          <PartsTable />
         </div>
       </React.Fragment>
     );
@@ -44,7 +39,7 @@ class Dashboard extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch, getState) => ({
-  getTable: message => dispatch(actions.getTable(message))
+  getParts: () => dispatch(actions.getParts())
 });
 
 const mapStateToProps = state => ({

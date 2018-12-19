@@ -9,7 +9,7 @@ class NavUi extends React.Component {
         <Link to="/dashboard" className="navLink">
           Dashboard
         </Link>
-        <Link to="/create-part" className="navLink">
+        <Link to="/createpart" className="navLink">
           Create A Part
         </Link>
         <Link to="/subAssy-create" className="navLink">

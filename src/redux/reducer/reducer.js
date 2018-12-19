@@ -9,6 +9,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   let { type, payload } = action;
+  console.log(payload, 'i am in the reducer');
 
   switch (type) {
     case 'GETPARTS':
